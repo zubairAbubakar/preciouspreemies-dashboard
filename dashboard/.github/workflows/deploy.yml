@@ -1,0 +1,40 @@
+name: Delop
+
+on:
+    workflow_run:
+        workflows: ['Lint']
+        branches: [main]
+        types:
+            - completed
+
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v3
+            - name: Install Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18.17.1'
+            - name: Cache npm dependencies
+                uses: actions/cache@v4
+                with:
+                    path: '~/.npm'
+                    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                    restore-keys: |
+                        ${{ runner.os }}-node-                  
+            - name: Install dependencies
+                run: npm install --prefer-offline
+            - name: Create SSH key.
+              run: |
+                  install -m 600 -D /dev/null ~/.ssh/id_rsa
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+                  echo "${{ secrets.SSH_KNOWN_HOST }}" > ~/.ssh/known_hosts
+            - name: Deploy.
+              env:
+                  ENVIRONMENT: production
+              run: yarn deploy                 
