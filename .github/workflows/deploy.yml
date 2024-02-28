@@ -34,7 +34,18 @@ jobs:
                   install -m 600 -D /dev/null ~/.ssh/id_rsa
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
                   echo "${{ secrets.SSH_KNOWN_HOST }}" > ~/.ssh/known_hosts
-            - name: Deploy.
+            - name: Compress and upload.
               env:
                   ENVIRONMENT: production
-              run: npm run deploy
+              run: |
+                  echo "Compressing the files..."
+                  tar -zcvf build.tar.gz --exclude-from="excluded_build_files.txt" .
+                  echo "Compression complete"
+                  echo "Uploading files to web server..." &&
+                  scp -i ~/.ssh/digitalOcean_private_server build.tar.gz $SERVER_USER@$SERVER_HOST:$SERVER_DIR &&
+                  echo "Uploaded files to web server!"
+            - name: Build and deploy.
+              uses: digitalocean/action-doctl@v2
+              with:
+                  token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; tar -xvzf build.tar.gz; npm run build; pm2 reload all;'
