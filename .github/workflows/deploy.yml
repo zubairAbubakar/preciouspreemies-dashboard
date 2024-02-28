@@ -38,9 +38,7 @@ jobs:
               env:
                   ENVIRONMENT: production
               run: |
-                  echo "Compressing the files..."
-                  tar -zcvf build.tar.gz --exclude-from="excluded_build_files.txt" .
-                  echo "Compression complete"
+                  npm run compress
                   echo "Uploading files to web server..."
                   scp -i ~/.ssh/digitalOcean_private_server build.tar.gz $SERVER_USER@$SERVER_HOST:$SERVER_DIR
                   echo "Uploaded files to web server!"
