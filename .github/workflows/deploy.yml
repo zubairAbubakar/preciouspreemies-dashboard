@@ -38,8 +38,7 @@ jobs:
               env:
                   ENVIRONMENT: production
               run: |
-                  tar -cf - --exclude-from="excluded_build_files.txt" . \                
-                  | ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'tar -xf - --transform="s#.*/##" -C ${{ secrets.APP_DIR }}'
+                  tar -cf - --exclude-from="excluded_build_files.txt" . | ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'tar -xf - --transform="s#.*/##" -C ${{ secrets.APP_DIR }}'
             - name: Build and deploy.
               uses: digitalocean/action-doctl@v2
               with:
