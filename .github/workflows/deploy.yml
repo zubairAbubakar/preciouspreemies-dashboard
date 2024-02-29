@@ -39,11 +39,8 @@ jobs:
                   ENVIRONMENT: production
               run: |
                   npm run compress
-                  echo "Uploading files to web server..."
-                  scp -i ~/.ssh/digitalOcean_private_server build.tar.gz $SERVER_USER@$SERVER_HOST:$SERVER_DIR
-                  echo "Uploaded files to web server!"
             - name: Build and deploy.
               uses: digitalocean/action-doctl@v2
               with:
                   token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; tar -xvzf build.tar.gz; npm run build; pm2 reload all;'
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; npm run build; pm2 reload all;'

@@ -13,9 +13,13 @@ export SERVER_USER=zubair
 # echo "Building the production build for the app...."
 #     npm run build --scripts-prepend-node-path &&
 #     echo "Production build done successfully!" &&
-    echo "Compressing the build..." &&
-    tar -zcvf build.tar.gz --exclude-from="excluded_build_files.txt" . &&
-    echo "Compression complete!"
+    # echo "Compressing the build..." &&
+    # tar -zcvf build.tar.gz --exclude-from="excluded_build_files.txt" . &&
+    # echo "Compression complete!"
+    echo "Compressing and transferring files..." &&
+    tar -cf - --exclude-from="excluded_build_files.txt" . \                
+  | ssh -i ~/.ssh/digitalOcean_private_server SERVER_USER@SERVER_HOST 'tar -xf - --transform="s#.*/##" -C SERVER_DIR'
+   echo "Transfer complete!"
     # echo "Uploading files to web server..." &&
     # scp -i ~/.ssh/digitalOcean_private_server -r build.tar.gz $SERVER_USER@$SERVER_HOST:$SERVER_DIR &&
     # echo "Uploaded files to web server!"    
