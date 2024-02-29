@@ -37,8 +37,7 @@ jobs:
             - name: Compress and upload.
               env:
                   ENVIRONMENT: production
-              run: |
-                  npm run compress
+              run: npm run compress
             - name: Build and deploy.
               uses: digitalocean/action-doctl@v2
               with:
