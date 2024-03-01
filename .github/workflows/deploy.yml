@@ -43,4 +43,4 @@ jobs:
               uses: digitalocean/action-doctl@v2
               with:
                   token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; npm install --prefer-offline; npm run build; npm run start; pm2 reload all;'
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; nvm install 18; npm install --prefer-offline; npm run build; npm run start; pm2 reload all;'
