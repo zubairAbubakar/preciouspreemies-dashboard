@@ -38,9 +38,9 @@ jobs:
               env:
                   ENVIRONMENT: production
               run: |
-                  tar -cf - --exclude-from="excluded_build_files.txt" . | ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'tar -xf - --transform="s#.*/##" -C ${{ secrets.APP_DIR }}'
+                  tar -cf - --exclude-from="excluded_build_files.txt" . | ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'tar -xf - -C ${{ secrets.APP_DIR }}'
             - name: Build and deploy.
               uses: digitalocean/action-doctl@v2
               with:
                   token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; which node; npm -v; node -v; npm install; npm run build; npm run start; pm2 reload all;'
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; npm install --prefer-offline; npm run build; npm run start; pm2 reload all;'
