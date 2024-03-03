@@ -43,4 +43,4 @@ jobs:
               uses: digitalocean/action-doctl@v2
               with:
                   token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; su - ${{ secrets.SERVER_USER }}; npm install --prefer-offline; npm run build; pm2 start npm --name "preciouspreemies-dashboard" -- start'
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; su - ${{ secrets.SERVER_USER }}; npm install --prefer-offline; su - ${{ secrets.SERVER_USER }}; npm run build; su - ${{ secrets.SERVER_USER }}; pm2 start npm --name "preciouspreemies-dashboard" -- start'
