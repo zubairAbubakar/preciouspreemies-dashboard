@@ -41,4 +41,6 @@ jobs:
                   tar -cf - --exclude-from="excluded_build_files.txt" . | ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'tar -xf - -C ${{ secrets.APP_DIR }}'
             - name: Build and deploy.
               uses: digitalocean/action-doctl@v2
-            - run: doctl compute ssh zubairabubakar.co --ssh-user '${{ secrets.SERVER_USER }}' --ssh-key-path '~/.ssh/id_rsa' --ssh-command 'cd ${{ secrets.APP_DIR }}; npm install --prefer-offline; npm run build; pm2 start npm --name "preciouspreemies-dashboard" -- start;'
+              with:
+                  token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+            - run: doctl compute ssh zubairabubakar.co --ssh-command 'cd ${{ secrets.APP_DIR }}; su - ${{ secrets.SERVER_USER }}; npm install --prefer-offline; npm run build; pm2 start npm --name "preciouspreemies-dashboard" -- start'
