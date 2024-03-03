@@ -12,7 +12,7 @@
 		"style:lint": "eslint 'app/**/*.{ts,tsx}'",
 		"style:prettier": "prettier --check 'app/**/*.{ts,tsx}'",
 		"make-pretty": "prettier --write 'app/**/*.{js,jsx,ts,tsx}'",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@radix-ui/react-slot": "^1.0.2",
