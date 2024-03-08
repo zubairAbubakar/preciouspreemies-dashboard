@@ -3,8 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"build": "npm run clean --scripts-prepend-node-path && next build",
-		"clean": "rimraf .next out",
+		"build": "next build",
 		"compress": "bash publish.sh",
 		"dev": "next dev",
 		"start": "next start",
