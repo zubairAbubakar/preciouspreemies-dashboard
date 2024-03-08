@@ -6,8 +6,8 @@ const SetupPage = () => {
     <div className="p-4">
       <UserButton afterSignOutUrl="/" />
       <Button variant={"secondary"}>Testing</Button>
-      <Button variant={"destructive"}>Testing</Button>
-      <Button variant={"outline"}>Testing</Button>
+      <Button variant={"destructive"}>New Button</Button>
+      <Button variant={"outline"}>Click Me</Button>
     </div>
   );
 };
