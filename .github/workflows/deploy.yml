@@ -51,6 +51,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.APP_DIR }}
-            npm install 
+            npm install --prefer-offline
             npm run build
             pm2 restart preciouspreemies-dashboard
