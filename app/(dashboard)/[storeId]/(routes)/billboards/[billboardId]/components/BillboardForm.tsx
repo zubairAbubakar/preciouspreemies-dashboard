@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import * as z from 'zod';
-import { Trash } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import * as z from "zod";
+import { Trash } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
-import { Button } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Billboard } from '@prisma/client';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Billboard } from "@prisma/client";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -17,15 +17,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useParams, useRouter } from 'next/navigation';
-import { AlertModal } from '@/components/modals/alert-modal';
-import { ApiAlert } from '@/components/ui/api-alert';
-import { useOrigin } from '@/hooks/use-origin';
-import ImageUpload from '@/components/ui/image-upload';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
+import { AlertModal } from "@/components/modals/alert-modal";
+import { ApiAlert } from "@/components/ui/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
+import ImageUpload from "@/components/ui/image-upload";
 
 interface BillboardFormProps {
   initialData: Billboard | null;
@@ -48,16 +48,16 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const router = useRouter();
   const origin = useOrigin();
 
-  const title = initialData ? 'Edit billboard' : 'Create billboard';
-  const description = initialData ? 'Edit billboard' : 'Add a new billboard';
-  const toastMessage = initialData ? 'Billboard updated.' : 'Billboard created';
-  const action = initialData ? 'Save chanages' : 'Create';
+  const title = initialData ? "Edit billboard" : "Create billboard";
+  const description = initialData ? "Edit billboard" : "Add a new billboard";
+  const toastMessage = initialData ? "Billboard updated." : "Billboard created";
+  const action = initialData ? "Save chanages" : "Create";
 
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      label: '',
-      imageUrl: '',
+      label: "",
+      imageUrl: "",
     },
   });
 
@@ -67,7 +67,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/billboards/${params.billboardId}`,
-          data
+          data,
         );
       } else {
         await axios.post(`/api/${params.storeId}/billboards`, data);
@@ -76,7 +76,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       router.push(`/${params.storeId}/billboards`);
       toast.success(toastMessage);
     } catch (error) {
-      toast.error('Sorry something went wrong!');
+      toast.error("Sorry something went wrong!");
     } finally {
       setLoading(false);
     }
@@ -86,14 +86,14 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${params.billboardId}`
+        `/api/${params.storeId}/billboards/${params.billboardId}`,
       );
       router.refresh();
-      router.push('/');
-      toast.success('Billboard deleted.');
+      router.push("/");
+      toast.success("Billboard deleted.");
     } catch (error) {
       toast.error(
-        'Make sure you remove all categories using this billboard first'
+        "Make sure you remove all categories using this billboard first",
       );
     } finally {
       setLoading(false);
@@ -139,7 +139,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     value={field.value ? [field.value] : []}
                     disabled={loading}
                     onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange('')}
+                    onRemove={() => field.onChange("")}
                   />
                 </FormControl>
                 <FormMessage />

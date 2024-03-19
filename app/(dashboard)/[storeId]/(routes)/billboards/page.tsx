@@ -1,8 +1,8 @@
-import { auth } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-import prismadb from '@/lib/prismadb';
-import { BillboardClient } from './components/client';
+import prismadb from "@/lib/prismadb";
+import { BillboardClient } from "./components/client";
 
 interface BillboardsPageProps {
   params: { billboardId: string };
@@ -12,7 +12,7 @@ const BillboardsPage: React.FC<BillboardsPageProps> = async ({ params }) => {
   const { userId } = auth();
 
   if (!userId) {
-    redirect('/sign-in');
+    redirect("/sign-in");
   }
 
   const billboard = await prismadb.store.findFirst({
@@ -22,7 +22,7 @@ const BillboardsPage: React.FC<BillboardsPageProps> = async ({ params }) => {
   });
 
   if (!billboard) {
-    redirect('/');
+    redirect("/");
   }
 
   return (
