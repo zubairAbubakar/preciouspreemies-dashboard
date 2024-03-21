@@ -1,34 +1,20 @@
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-
 import prismadb from "@/lib/prismadb";
 import { BillboardClient } from "./components/client";
 
-interface BillboardsPageProps {
-  params: { billboardId: string };
-}
-
-const BillboardsPage: React.FC<BillboardsPageProps> = async ({ params }) => {
-  const { userId } = auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
-  const billboard = await prismadb.store.findFirst({
+const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
+  const billboards = await prismadb.billboard.findMany({
     where: {
-      id: params.billboardId,
+      storeId: params.storeId,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
-
-  if (!billboard) {
-    redirect("/");
-  }
 
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardClient />
+        <BillboardClient data={billboards} />
       </div>
     </div>
   );
