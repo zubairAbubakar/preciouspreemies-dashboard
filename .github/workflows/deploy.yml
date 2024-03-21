@@ -52,5 +52,7 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIR }}
             npm install --prefer-offline
+            npx prisma generate
+            npx prisma db push  
             npm run build
             pm2 restart preciouspreemies-dashboard
