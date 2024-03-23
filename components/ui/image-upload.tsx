@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { Button } from './button';
 import { ImagePlus, Trash } from 'lucide-react';
