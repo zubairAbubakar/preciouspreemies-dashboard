@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { Plus } from 'lucide-react';
-import { Separator } from '@radix-ui/react-separator';
-import { useParams, useRouter } from 'next/navigation';
+import { Plus } from "lucide-react";
+import { Separator } from "@radix-ui/react-separator";
+import { useParams, useRouter } from "next/navigation";
 
-import { Button } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { CategoryColumn, columns } from './columns';
-import { DataTable } from '@/components/ui/data-table';
-import { ApiList } from '@/components/ui/api-list';
+import { Button } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { CategoryColumn, columns } from "./columns";
+import { DataTable } from "@/components/ui/data-table";
+import { ApiList } from "@/components/ui/api-list";
 
 interface CategoryClientProps {
   data: CategoryColumn[];

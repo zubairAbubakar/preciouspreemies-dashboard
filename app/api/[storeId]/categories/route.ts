@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-import { auth } from '@clerk/nextjs';
-import prismadb from '@/lib/prismadb';
+import { auth } from "@clerk/nextjs";
+import prismadb from "@/lib/prismadb";
 
 export async function POST(
   request: Request,
-  { params }: { params: { storeId: string } }
+  { params }: { params: { storeId: string } },
 ) {
   try {
     const { userId } = auth();
@@ -14,19 +14,19 @@ export async function POST(
     const { name, billboardId } = body;
 
     if (!userId) {
-      return new NextResponse('Unauthenticated: ', { status: 401 });
+      return new NextResponse("Unauthenticated: ", { status: 401 });
     }
 
     if (!name) {
-      return new NextResponse('Name is required', { status: 400 });
+      return new NextResponse("Name is required", { status: 400 });
     }
 
     if (!billboardId) {
-      return new NextResponse('Billboard id is required', { status: 400 });
+      return new NextResponse("Billboard id is required", { status: 400 });
     }
 
     if (!params.storeId) {
-      return new NextResponse('Store Id is required', { status: 400 });
+      return new NextResponse("Store Id is required", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -37,7 +37,7 @@ export async function POST(
     });
 
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized: ', { status: 403 });
+      return new NextResponse("Unauthorized: ", { status: 403 });
     }
 
     const category = await prismadb.category.create({
@@ -50,18 +50,18 @@ export async function POST(
 
     return NextResponse.json(category);
   } catch (error) {
-    console.log('[CATEGORYS_POST]: ', error);
-    return new NextResponse('Internal Server Error: ', { status: 500 });
+    console.log("[CATEGORYS_POST]: ", error);
+    return new NextResponse("Internal Server Error: ", { status: 500 });
   }
 }
 
 export async function GET(
   request: Request,
-  { params }: { params: { storeId: string } }
+  { params }: { params: { storeId: string } },
 ) {
   try {
     if (!params.storeId) {
-      return new NextResponse('Store Id is required', { status: 400 });
+      return new NextResponse("Store Id is required", { status: 400 });
     }
 
     const categories = await prismadb.category.findMany({
@@ -72,7 +72,7 @@ export async function GET(
 
     return NextResponse.json(categories);
   } catch (error) {
-    console.log('[CATEGORIES_GET]: ', error);
-    return new NextResponse('Internal Server Error: ', { status: 500 });
+    console.log("[CATEGORIES_GET]: ", error);
+    return new NextResponse("Internal Server Error: ", { status: 500 });
   }
 }
