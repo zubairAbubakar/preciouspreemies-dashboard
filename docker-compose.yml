@@ -1,0 +1,71 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      - sameNetworkAsMysql
+    ports:
+      - 3306:3306 # Maps the container's port 3306 to the host's port 3307
+    volumes:
+      - db-data:/var/lib/mysql # Mounts the volume to persist MySQL data
+  app:
+    # Defines the 'app' service for the Next.js app
+    build:
+      # Builds the Next.js app using the provided Dockerfile
+      context: .
+      target: runner # Uses the runner stage from the multi-stage Dockerfile
+    environment:
+      NODE_ENV: production
+      HOSTNAME: '0.0.0.0'
+      PORT: 3000
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - 3000:3000
+    networks:
+      - sameNetworkAsMysql # Connects the service to the 'sameNetworkAsMysql' network
+    depends_on:
+      - db
+networks:
+  sameNetworkAsMysql:
+    # Defines the 'sameNetworkAsMysql' network
+    driver: bridge # Specifies the network driver as 'bridge'
+volumes:
+  db-data: # Defines the volume for MySQL data
+
+# services:
+#   app:
+#     build:
+#       context: .
+#     image: preciouspreemies-dashboard
+#     ports:
+#       - '3000:3000'
+#     environment:
+#       NODE_ENV: development
+#     develop:
+#       watch:
+#         - path: ./src
+#           action: sync
+#           target: /app/src
+#           ignore:
+#             - node_modules/
+#         - action: rebuild
+#           path: package.json
+#   db:
+#     image: mysql:8.0
+#     restart: always
+#     environment:
+#       MYSQL_DATABASE: ${DATABASE_NAME}
+#       MYSQL_USER: ${DATABASE_USER}
+#       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+#       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+#     hostname: localhost
+#     ports:
+#       - '3306:3306'
+#     expose:
+#       - '3306'
+#     volumes:
+#       - ./docker-data/db:/var/lib/mysql
