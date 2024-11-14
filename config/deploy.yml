@@ -60,10 +60,10 @@ asset_path: /app/.next
 # aliases:
 #   shell: app exec --interactive --reuse "bash"
 
-ssh:
-  user: 'zubair'
-  keys: [' ~/.ssh/digitalOcean_private_server']
-  log_level: debug
+# ssh:
+#   user: 'zubair'
+#   keys: [' ...']
+#   log_level: debug
 # Use a persistent storage volume.
 #
 # volumes:
