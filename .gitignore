@@ -25,8 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
-.env*.production
+.env*
 .env
 
 # vercel
@@ -39,3 +38,4 @@ next-env.d.ts
 build.tar.gz
 
 /.husky/
+/docker-data
