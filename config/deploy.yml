@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: my-app
+service: preciouspreemies-dashboard
 
 # Name of the container image.
-image: zubairAbubakar/preciouspreemies-dashboard
+image: preciouspreemies-dashboard
 
 # Deploy to these servers.
 servers:
@@ -31,9 +31,9 @@ registry:
   # Specify the registry server, if you're not using Docker Hub
   server: ghcr.io
   username:
-    - DOCKER_USERNAME
+    - GHCR_USER
   password:
-    - DOCKER_PASSWORD
+    - GHCR_PASSWORD
 
 # Configure builder setup.
 builder:
