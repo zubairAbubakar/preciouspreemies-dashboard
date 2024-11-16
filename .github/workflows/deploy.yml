@@ -41,6 +41,6 @@ jobs:
           kamal lock release
           kamal deploy
         env:
-          DOCKER_USERNAME: ${{ secrets.GHCR_USER }}
-          DOCKER_PASSWORD: ${{ secrets.GHCR_PASSWORD }}
+          GHCR_USER: ${{ secrets.GHCR_USER }}
+          GHCR_PASSWORD: ${{ secrets.GHCR_PASSWORD }}
 #
