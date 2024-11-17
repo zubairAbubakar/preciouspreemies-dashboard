@@ -45,7 +45,7 @@ jobs:
       - name: Build and deploy
         run: |
           kamal lock release
-          kamal deploy
+          kamal deploy --http-port 4444 --https-port 4445
         env:
           GHCR_USER: ${{ secrets.GHCR_USER }}
           GHCR_PASSWORD: ${{ secrets.GHCR_PASSWORD }}
