@@ -45,6 +45,7 @@ jobs:
       - name: Build and deploy
         run: |
           kamal lock release
+          kamal proxy boot_config set --http-port 4444 --https-port 4445
           kamal deploy
         env:
           GHCR_USER: ${{ secrets.GHCR_USER }}
