@@ -2,7 +2,7 @@
 service: preciouspreemies-dashboard
 
 # Name of the container image.
-image: preciouspreemies-dashboard
+image: prozaimlabs/preciouspreemies-dashboard
 
 # Deploy to these servers.
 servers:
