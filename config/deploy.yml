@@ -2,7 +2,7 @@
 service: preciouspreemies-dashboard
 
 # Name of the container image.
-image: prozaimlabs/preciouspreemies-dashboard
+image: zubairabubakar/preciouspreemies-dashboard
 
 # Deploy to these servers.
 servers:
@@ -61,7 +61,7 @@ asset_path: /app/.next
 #   shell: app exec --interactive --reuse "bash"
 
 # ssh:
-#   user: 'zubair'
+#   user: ''
 #   keys: [' ...']
 #   log_level: debug
 # Use a persistent storage volume.
