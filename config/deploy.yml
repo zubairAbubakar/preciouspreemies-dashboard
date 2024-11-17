@@ -42,8 +42,6 @@ builder:
   #remote: ssh://zubairabubakar.co
   cache:
     type: registry
-    options: mode=max
-    image: preciouspreemies-dashboard/build-cache
 
 asset_path: /app/.next
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
