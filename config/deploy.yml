@@ -7,7 +7,7 @@ image: zubairabubakar/preciouspreemies-dashboard
 # Deploy to these servers.
 servers:
   web:
-    - SERVER_IP
+    - 164.92.207.125
   # job:
   #   hosts:
   #     - 192.168.0.1
