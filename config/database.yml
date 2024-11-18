@@ -1,0 +1,5 @@
+production:
+  <<: *default
+  username: <%= ENV["MYSQL_USER"] %>
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
