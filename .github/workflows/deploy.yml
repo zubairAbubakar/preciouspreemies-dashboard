@@ -46,8 +46,8 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - name: Build and deploy
         run: |
-          kamal lock release
           kamal proxy boot_config set --http-port 4444 --https-port 4445
+          kamal lock release
           kamal deploy
         env:
           GHCR_USER: ${{ secrets.GHCR_USER }}
