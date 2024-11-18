@@ -87,14 +87,14 @@ accessories:
   db:
     image: mysql:8.0
     host: 164.92.207.125
-    port: '3306'
+    port: '127.0.0.1:3306:3306'
     env:
       clear:
-        MYSQL_ROOT_HOST: '%'
+        MYSQL_USER: MYSQL_USER
+        MYSQL_DATABASE: MYSQL_DATABASE
       secret:
         - MYSQL_USER
         - MYSQL_ROOT_PASSWORD
-        - MYSQL_DATABASE
     # files:
     #   - config/mysql/production.cnf:/etc/mysql/my.cnf
     #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
