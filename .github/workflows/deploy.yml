@@ -18,6 +18,8 @@ jobs:
         kamal-version: ['2.2.2']
     env:
       DOCKER_BUILDKIT: 1
+      KAMAL_PROXY_HTTP_PORT: 4444
+      KAMAL_PROXY_HTTPS_PORT: 4445
 
     steps:
       - uses: actions/checkout@v4

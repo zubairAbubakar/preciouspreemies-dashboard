@@ -7,7 +7,7 @@ image: zubairabubakar/preciouspreemies-dashboard
 # Deploy to these servers.
 servers:
   web:
-    - 164.92.207.125
+    - SERVER_IP
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -39,7 +39,7 @@ registry:
 builder:
   arch: amd64
   local: true
-  #remote: ssh://zubairabubakar.co
+  #remote:
   cache:
     type: registry
 
