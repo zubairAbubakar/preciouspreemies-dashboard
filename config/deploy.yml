@@ -7,7 +7,10 @@ image: zubairabubakar/preciouspreemies-dashboard
 # Deploy to these servers.
 servers:
   web:
-    - 164.92.207.125
+    hosts:
+      - 164.92.207.125
+    options:
+      network: 'private'
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -86,8 +89,10 @@ env:
 accessories:
   db:
     image: mysql:8.0
+    roles:
+      - web
     host: 164.92.207.125
-    port: '127.0.0.1:3306:3306'
+    port: '3306'
     env:
       clear:
         MYSQL_USER: MYSQL_USER
@@ -100,6 +105,8 @@ accessories:
     #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
     directories:
       - db-data:/var/lib/mysql
+    options:
+      network: 'private'
 #   redis:
 #     image: valkey/valkey:8
 #     host: 192.168.0.2
