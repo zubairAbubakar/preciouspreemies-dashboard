@@ -1,9 +1,9 @@
 production:
   <<: *default
-  username: <%= ENV["MYSQL_USER"] %>
-  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
-  database: <%= ENV["DATABASE_NAME"] %>
+  username: admin
+  password: p4ssw0rd
+  host: host.docker.internal
+  database: preciouspreemies
   adapter: mysql2
   encoding: utf8mb4
   reconnect: false
