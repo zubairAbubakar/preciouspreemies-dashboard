@@ -51,7 +51,10 @@ asset_path: /app/.next
 #
 env:
   clear:
-    DB_HOST: preciouspreemiesdashboard-db
+    MYSQL_DATABASE: DATABASE_NAME
+    MYSQL_USER: DATABASE_USER
+    MYSQL_HOST: 'preciouspreemiesdashboard-db'
+    MYSQL_ROOT_PASSWORD: DATABASE_PASSWORD
   secret:
     - MYSQL_USER
     - MYSQL_ROOT_PASSWORD
@@ -90,13 +93,12 @@ accessories:
   db:
     image: mysql:8.0
     host: 164.92.207.125
-    port: '3306'
+    # port: '3306'
     env:
       clear:
         MYSQL_USER: MYSQL_USER
         MYSQL_DATABASE: MYSQL_DATABASE
       secret:
-        - MYSQL_USER
         - MYSQL_ROOT_PASSWORD
     # files:
     #   - config/mysql/production.cnf:/etc/mysql/my.cnf

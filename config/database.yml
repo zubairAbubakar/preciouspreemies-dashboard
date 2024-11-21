@@ -1,12 +1,10 @@
+default: &default
+  adapter: mysql2
+  encoding: unicode
+
 production:
   <<: *default
   username: admin
   password: p4ssw0rd
   host: host.docker.internal
   database: preciouspreemies
-  adapter: mysql2
-  encoding: utf8mb4
-  reconnect: false
-  socket: /var/run/mysqld/mysqld.sock
-  variables:
-    sql_mode: TRADITIONAL
