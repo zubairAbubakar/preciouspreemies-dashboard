@@ -1,10 +1,10 @@
-default: &default
-  adapter: mysql2
-  encoding: unicode
+# default: &default
+#   adapter: mysql2
+#   encoding: unicode
 
-production:
-  <<: *default
-  username: admin
-  password: p4ssw0rd
-  host: 164.92.207.125
-  database: preciouspreemies
+# production:
+#   <<: *default
+#   username: admin
+#   password: p4ssw0rd
+#   host: 164.92.207.125
+#   database: preciouspreemies
