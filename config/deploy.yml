@@ -89,26 +89,26 @@ asset_path: /app/.next
 
 # Use accessory services (secrets come from .kamal/secrets).
 #
-accessories:
-  db:
-    image: mysql:8.0
-    roles:
-      - web
-    # host: 164.92.207.125
-    # port: '3306'
-    env:
-      clear:
-        MYSQL_ROOT_HOST: '%'
-        # MYSQL_USER: admin
-      secret:
-        - MYSQL_ROOT_PASSWORD
-    # files:
-    #   - config/mysql/production.cnf:/etc/mysql/my.cnf
-    #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-    directories:
-      - db-data:/var/lib/mysql
-    options:
-      network: 'private'
+# accessories:
+#   db:
+#     image: mysql:8.0
+#     roles:
+#       - web
+#     # host: 164.92.207.125
+#     # port: '3306'
+#     env:
+#       clear:
+#         MYSQL_ROOT_HOST: '%'
+#         # MYSQL_USER: admin
+#       secret:
+#         - MYSQL_ROOT_PASSWORD
+#     # files:
+#     #   - config/mysql/production.cnf:/etc/mysql/my.cnf
+#     #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+#     directories:
+#       - db-data:/var/lib/mysql
+#     options:
+#       network: 'private'
 #   redis:
 #     image: valkey/valkey:8
 #     host: 192.168.0.2
