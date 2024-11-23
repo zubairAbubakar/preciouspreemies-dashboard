@@ -49,16 +49,16 @@ builder:
 asset_path: /app/.next
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
-env:
-  clear:
-    MYSQL_DATABASE: preciouspreemies
-    MYSQL_USER: admin
-    MYSQL_HOST: 'preciouspreemiesdashboard-db'
-    MYSQL_ROOT_PASSWORD: p4ssw0rd
-  secret:
-    - MYSQL_USER
-    - MYSQL_ROOT_PASSWORD
-    - MYSQL_DATABASE
+# env:
+#   clear:
+#     MYSQL_DATABASE: preciouspreemies
+#     MYSQL_USER: admin
+#     MYSQL_HOST: 'preciouspreemiesdashboard-db'
+#     MYSQL_ROOT_PASSWORD: p4ssw0rd
+#   secret:
+#     - MYSQL_USER
+#     - MYSQL_ROOT_PASSWORD
+#     - MYSQL_DATABASE
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -99,7 +99,7 @@ accessories:
     env:
       clear:
         MYSQL_ROOT_HOST: '%'
-        MYSQL_USER: admin
+        # MYSQL_USER: admin
       secret:
         - MYSQL_ROOT_PASSWORD
     # files:
