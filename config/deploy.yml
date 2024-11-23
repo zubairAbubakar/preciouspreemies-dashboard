@@ -51,10 +51,10 @@ asset_path: /app/.next
 #
 env:
   clear:
-    MYSQL_DATABASE: DATABASE_NAME
-    MYSQL_USER: DATABASE_USER
+    MYSQL_DATABASE: MYSQL_DATABASE
+    MYSQL_USER: MYSQL_USER
     MYSQL_HOST: 'preciouspreemiesdashboard-db'
-    MYSQL_ROOT_PASSWORD: DATABASE_PASSWORD
+    MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
   secret:
     - MYSQL_USER
     - MYSQL_ROOT_PASSWORD
@@ -92,12 +92,14 @@ env:
 accessories:
   db:
     image: mysql:8.0
-    host: 164.92.207.125
+    roles:
+      - web
+    # host: 164.92.207.125
     # port: '3306'
     env:
       clear:
+        MYSQL_ROOT_HOST: '%'
         MYSQL_USER: MYSQL_USER
-        MYSQL_DATABASE: MYSQL_DATABASE
       secret:
         - MYSQL_ROOT_PASSWORD
     # files:
