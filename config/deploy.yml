@@ -51,10 +51,10 @@ asset_path: /app/.next
 #
 env:
   clear:
-    MYSQL_DATABASE: MYSQL_DATABASE
-    MYSQL_USER: MYSQL_USER
+    MYSQL_DATABASE: preciouspreemies
+    MYSQL_USER: admin
     MYSQL_HOST: 'preciouspreemiesdashboard-db'
-    MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+    MYSQL_ROOT_PASSWORD: p4ssw0rd
   secret:
     - MYSQL_USER
     - MYSQL_ROOT_PASSWORD
@@ -99,7 +99,7 @@ accessories:
     env:
       clear:
         MYSQL_ROOT_HOST: '%'
-        MYSQL_USER: MYSQL_USER
+        MYSQL_USER: admin
       secret:
         - MYSQL_ROOT_PASSWORD
     # files:
