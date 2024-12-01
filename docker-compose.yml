@@ -7,7 +7,7 @@ services:
       - MYSQL_PASSWORD=${DATABASE_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
     networks:
-      - private
+      - kamal
     ports:
       - 3306:3306 # Maps the container's port 3306 to the host's port 3307
     volumes:
@@ -26,12 +26,12 @@ services:
     ports:
       - 3000:3000
     networks:
-      - private # Connects the service to the 'private' network
+      - kamal # Connects the service to the 'kamal' network
     depends_on:
       - db
 networks:
-  private:
-    # Defines the 'private' network
+  kamal:
+    # Defines the 'kamal' network
     driver: bridge # Specifies the network driver as 'bridge'
 volumes:
   db-data: # Defines the volume for MySQL data
