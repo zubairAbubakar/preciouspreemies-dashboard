@@ -6,5 +6,5 @@ production:
   <<: *default
   username: admin
   password: p4ssw0rd
-  host: mysql
+  host: host.docker.internal
   database: preciouspreemies
