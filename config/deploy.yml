@@ -50,14 +50,14 @@ builder:
 asset_path: /app/.next
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
-# env:
-#   clear:
-#     MYSQL_USER: 'admin'
-#     MYSQL_DATABASE: 'preciouspreemies'
-#     MYSQL_HOST: 'preciouspreemiesdashboard-db'
-#     MYSQL_ROOT_PASSWORD: p4ssw0rd
-#   secret:
-#     - MYSQL_ROOT_PASSWORD
+env:
+  clear:
+    MYSQL_USER: 'admin'
+    MYSQL_DATABASE: 'preciouspreemies'
+    MYSQL_HOST: 'preciouspreemiesdashboard-kamaldb'
+    MYSQL_ROOT_PASSWORD: p4ssw0rd
+  secret:
+    - MYSQL_ROOT_PASSWORD
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -88,27 +88,27 @@ asset_path: /app/.next
 
 # Use accessory services (secrets come from .kamal/secrets).
 #
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     roles:
-#       - web
-#     port: 127.0.0.1:3306:3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#         MYSQL_USER: 'admin'
-#         MYSQL_DATABASE: 'preciouspreemies'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#         - MYSQL_PASSWORD
-#     # files:
-#     #   - config/mysql/production.cnf:/etc/mysql/my.cnf
-#     #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - db-data:/var/lib/mysql
-#     options:
-#       network: 'private'
+accessories:
+  kamaldb:
+    image: mysql:8.0
+    roles:
+      - web
+    port: 127.0.0.1:3306:3306
+    env:
+      clear:
+        MYSQL_ROOT_HOST: '%'
+        MYSQL_USER: 'admin'
+        MYSQL_DATABASE: 'preciouspreemies'
+      secret:
+        - MYSQL_ROOT_PASSWORD
+        - MYSQL_PASSWORD
+    # files:
+    #   - config/mysql/production.cnf:/etc/mysql/my.cnf
+    #   - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+    directories:
+      - db-data:/var/lib/mysql
+    options:
+      network: 'private'
 #   redis:
 #     image: valkey/valkey:8
 #     host: 192.168.0.2
