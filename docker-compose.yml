@@ -1,5 +1,5 @@
 services:
-  db:
+  preciouspreemiesdashboard-kamaldb:
     image: mysql:8.0
     environment:
       - MYSQL_DATABASE=${DATABASE_NAME}
@@ -28,7 +28,7 @@ services:
     networks:
       - kamal # Connects the service to the 'kamal' network
     depends_on:
-      - db
+      - preciouspreemiesdashboard-kamaldb
 networks:
   kamal:
     # Defines the 'kamal' network
