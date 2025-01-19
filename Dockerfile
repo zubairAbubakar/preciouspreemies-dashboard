@@ -47,4 +47,4 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Wait for the database to be ready, then run migrations
-CMD ["sh", "-c", "until nc -z db 3306; do echo 'Waiting for DB...'; sleep 3; done; npx prisma db push; npx prisma migrate deploy --schema=./prisma/schema.prisma && node server.js"]
+CMD ["sh", "-c", "until nc -z preciouspreemiesdashboard-kamaldb 3306; do echo 'Waiting for DB...'; sleep 3; done; npx prisma db push; npx prisma migrate deploy --schema=./prisma/schema.prisma && node server.js"]
