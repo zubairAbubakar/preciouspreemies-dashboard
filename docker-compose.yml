@@ -1,6 +1,7 @@
 services:
   preciouspreemiesdashboard-kamaldb:
     image: mysql:8.0
+    container_name: preciouspreemiesdashboard-kamaldb
     environment:
       - MYSQL_DATABASE=${DATABASE_NAME}
       - MYSQL_USER=${DATABASE_USER}
@@ -20,7 +21,8 @@ services:
       target: runner # Uses the runner stage from the multi-stage Dockerfile
     environment:
       NODE_ENV: production
-      HOSTNAME: '0.0.0.0'
+      # HOSTNAME: '0.0.0.0'
+      MYSQL_HOST: preciouspreemiesdashboard-kamaldb
       PORT: 3000
       DATABASE_URL: ${DATABASE_URL}
     ports:
