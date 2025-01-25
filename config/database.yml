@@ -4,7 +4,7 @@ default: &default
 
 production:
   <<: *default
-  username: admin
-  password: p4ssw0rd
-  host: host.docker.internal
-  database: preciouspreemies
+  username: <%= ENV["MYSQL_USER"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  database: <%= ENV["MYSQL_DATABASE"] %>
