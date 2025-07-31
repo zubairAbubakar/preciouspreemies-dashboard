@@ -1,14 +1,13 @@
 services:
-  preciouspreemiesdashboard-kamaldb:
+  db:
     image: mysql:8.0
-    container_name: preciouspreemiesdashboard-kamaldb
     environment:
       - MYSQL_DATABASE=${DATABASE_NAME}
       - MYSQL_USER=${DATABASE_USER}
       - MYSQL_PASSWORD=${DATABASE_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
     networks:
-      - kamal
+      - sameNetworkAsMysql
     ports:
       - 3306:3306 # Maps the container's port 3306 to the host's port 3307
     volumes:
@@ -21,19 +20,18 @@ services:
       target: runner # Uses the runner stage from the multi-stage Dockerfile
     environment:
       NODE_ENV: production
-      # HOSTNAME: '0.0.0.0'
-      MYSQL_HOST: preciouspreemiesdashboard-kamaldb
+      HOSTNAME: '0.0.0.0'
       PORT: 3000
       DATABASE_URL: ${DATABASE_URL}
     ports:
       - 3000:3000
     networks:
-      - kamal # Connects the service to the 'kamal' network
+      - sameNetworkAsMysql # Connects the service to the 'sameNetworkAsMysql' network
     depends_on:
-      - preciouspreemiesdashboard-kamaldb
+      - db
 networks:
-  kamal:
-    # Defines the 'kamal' network
+  sameNetworkAsMysql:
+    # Defines the 'sameNetworkAsMysql' network
     driver: bridge # Specifies the network driver as 'bridge'
 volumes:
   db-data: # Defines the volume for MySQL data
